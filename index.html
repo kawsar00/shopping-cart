@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="minusCase" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input  id="addNumberValue" type="text" class="form-control text-center" value="1">
+                           <button id="addCase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="casePrice">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -82,7 +82,8 @@
 
 
 <script>
-   //plus button event handler
+//plus button event handler
+//script for phone
    const addPhone = document.getElementById('addPhone');
    addPhone.addEventListener("click", function(){
       const addNumber = document.getElementById('addNumber').value;
@@ -93,13 +94,41 @@
       var priceValue = parseFloat(phonePrice);
       document.getElementById('phonePrice').innerText = totalValue * 1219; 
    })
+//script for phone case
+   const addCase = document.getElementById('addCase');
+   addCase.addEventListener("click", function(){
+      const addNumberValue = document.getElementById('addNumberValue').value;
+      const currentValue = parseFloat(addNumberValue);
+      var totalValue = document.getElementById('addNumberValue').value = currentValue + 1;
 
-   //minus button event handler
-   const minusBtn = document.getElementById('minusPhone');
-   minusBtn.addEventListener("click", function(){
-      
+      var casePrice = document.getElementById('casePrice').innerText;
+      var priceValue = parseFloat(casePrice);
+      document.getElementById('casePrice').innerText = totalValue * 59; 
    })
 
+//minus button event handler
+//script for phone
+   const minusBtn = document.getElementById('minusPhone');
+   minusBtn.addEventListener("click", function(){
+      const addNumber = document.getElementById('addNumber').value;
+      const currentValue = parseFloat(addNumber);
+      var totalValue = document.getElementById('addNumber').value = currentValue - 1;
+
+      var phonePrice = document.getElementById('phonePrice').innerText;
+      var priceValue = parseFloat(phonePrice);
+      document.getElementById('phonePrice').innerText = totalValue * 1219; 
+   })
+//script for phone case
+const minusButton = document.getElementById('minusCase');
+minusButton.addEventListener("click", function(){
+      const addNumberValue = document.getElementById('addNumberValue').value;
+      const currentValue = parseFloat(addNumberValue);
+      var totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
+
+      var casePrice = document.getElementById('casePrice').innerText;
+      var priceValue = parseFloat(casePrice);
+      document.getElementById('casePrice').innerText = totalValue * 59; 
+   })
 </script>
 
 
