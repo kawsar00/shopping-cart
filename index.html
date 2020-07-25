@@ -64,7 +64,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal">1,278</span></h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -83,52 +83,70 @@
 
 <script>
 //plus button event handler
+function getAddNumber(id) {
+      const addNumber = document.getElementById(id).value;
+      const currentValue = parseFloat(addNumber);
+      return currentValue;
+   }
+   function getPriceNumber(id) {
+      var Price = document.getElementById(id).innerText;
+      var priceValue = parseFloat(Price);
+      return priceValue; 
+   }
 //script for phone
    const addPhone = document.getElementById('addPhone');
    addPhone.addEventListener("click", function(){
-      const addNumber = document.getElementById('addNumber').value;
-      const currentValue = parseFloat(addNumber);
+      const currentValue = getAddNumber('addNumber');
       var totalValue = document.getElementById('addNumber').value = currentValue + 1;
 
-      var phonePrice = document.getElementById('phonePrice').innerText;
-      var priceValue = parseFloat(phonePrice);
-      document.getElementById('phonePrice').innerText = totalValue * 1219; 
+      const priceValue = getPriceNumber('phonePrice');
+      var totalPrice = document.getElementById('phonePrice').innerText = totalValue * 1219;  
    })
 //script for phone case
    const addCase = document.getElementById('addCase');
    addCase.addEventListener("click", function(){
-      const addNumberValue = document.getElementById('addNumberValue').value;
-      const currentValue = parseFloat(addNumberValue);
+      const currentValue = getAddNumber('addNumberValue');
       var totalValue = document.getElementById('addNumberValue').value = currentValue + 1;
 
-      var casePrice = document.getElementById('casePrice').innerText;
-      var priceValue = parseFloat(casePrice);
-      document.getElementById('casePrice').innerText = totalValue * 59; 
+      const priceValue = getPriceNumber('casePrice');
+      var totalPrice = document.getElementById('casePrice').innerText = totalValue * 59;
    })
 
 //minus button event handler
 //script for phone
    const minusBtn = document.getElementById('minusPhone');
    minusBtn.addEventListener("click", function(){
-      const addNumber = document.getElementById('addNumber').value;
-      const currentValue = parseFloat(addNumber);
+      const currentValue = getAddNumber('addNumber');
       var totalValue = document.getElementById('addNumber').value = currentValue - 1;
 
-      var phonePrice = document.getElementById('phonePrice').innerText;
-      var priceValue = parseFloat(phonePrice);
+      var priceValue = getPriceNumber('phonePrice');
       document.getElementById('phonePrice').innerText = totalValue * 1219; 
    })
 //script for phone case
 const minusButton = document.getElementById('minusCase');
 minusButton.addEventListener("click", function(){
-      const addNumberValue = document.getElementById('addNumberValue').value;
-      const currentValue = parseFloat(addNumberValue);
-      var totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
+      const currentValue = getAddNumber('addNumberValue');
+      const totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
 
-      var casePrice = document.getElementById('casePrice').innerText;
-      var priceValue = parseFloat(casePrice);
+      var priceValue = getPriceNumber('casePrice');
       document.getElementById('casePrice').innerText = totalValue * 59; 
    })
+
+
+
+//function goes here..........................
+
+
+
+
+
+   function addSubTotal(totalPrice) {
+      const subTotal = document.getElementById('subTotal').innerText;
+      const subTotalValue = parseFloat(subTotal);
+      const subTotalAll = subTotalValue + 1219;
+      document.getElementById('subTotal').innerText = subTotalAll;
+   }
+  
 </script>
 
 
