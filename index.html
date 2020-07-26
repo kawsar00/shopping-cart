@@ -43,12 +43,23 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minusCase" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input  id="addNumberValue" type="text" class="form-control text-center" value="1">
-                           <button id="addCase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+
+                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay..........
+                           <button onclick="handleProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>  -->
+
+                           <input  id="case-count" type="text" class="form-control text-center" value="1">
+                           <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay..........
+                           <button onclick="handleProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button> -->
+
+                           
 
                         </div>
-                        <h5>$ <span id="casePrice">59</span></h5>
+                        <h5>$ <span id="case-total">59</span></h5>
+                        <!-- <h5 id="case-total" >$59</span></h5> evabe deoya jay -->
+
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -78,11 +89,113 @@
       </div>
    </section>
 
+<script>
+   document.getElementById("case-increase").addEventListener("click", function(){
+      handleProductChange(true);
+   });
+   document.getElementById("case-decrease").addEventListener("click", function(){
+      handleProductChange(false);
+   });
+   function handleProductChange(isIncrease){
+   const caseInput = document.getElementById("case-count");
+   const caseCount = parseInt(caseInput.value);
+   // const caseNewCount = caseCount - 1;
+
+   let caseNewCount = caseCount;
+   if(isIncrease == true){
+     caseNewCount = caseCount + 1;
+   }
+   if(isIncrease == false && caseCount > 0){
+     caseNewCount = caseCount - 1;
+   }
+   caseInput.value = caseNewCount;
+   const caseTotal = caseNewCount * 59;
+   document.getElementById("case-total").innerText = caseTotal;
+}
 
 
 
+//script for phone case
+// document.getElementById("case-increase").addEventListener("click", function(){
+//    //evabeo kora jay.............................................
+
+//    // const caseInput = document.getElementById("case-count").value;
+//    // const caseCount = parseFloat(caseInput);
+//    // const caseNewCount = caseCount + 1;
+//    // document.getElementById("case-count").value = caseNewCount;  
+
+//    const caseInput = document.getElementById("case-count");
+//    const caseCount = parseFloat(caseInput.value);
+//    const caseNewCount = caseCount + 1;
+//    caseInput.value = caseNewCount;
+//    const caseTotal = caseNewCount * 59;
+//    document.getElementById("case-total").innerText = caseTotal;
+
+//    // h5 tag a id use korle eivabe dite hobe
+//    // document.getElementById("case-total").innerText = '$' + caseTotal;
+// });
+// document.getElementById("case-decrease").addEventListener("click", function(){
+//    const caseInput = document.getElementById("case-count");
+//    const caseCount = parseInt(caseInput.value);
+//    const caseNewCount = caseCount - 1;
+//    caseInput.value = caseNewCount;
+//    const caseTotal = caseNewCount * 59;
+//    document.getElementById("case-total").innerText = caseTotal;
+// });
+
+</script>
+
+
+
+
+<!-- 
 <script>
 //plus button event handler
+
+//script for phone
+   const addPhone = document.getElementById('addPhone');
+   addPhone.addEventListener("click", function(){
+      const currentValue = getAddNumber('addNumber');
+      var totalValue = document.getElementById('addNumber').value = currentValue + 1;
+      const priceValue = getPriceNumber('phonePrice');
+      var totalPhonePrice = document.getElementById('phonePrice').innerText = totalValue * 1219; 
+      return totalPhonePrice;  
+
+      addSubTotal();
+   })
+//script for phone case
+   const addCase = document.getElementById('addCase');
+   addCase.addEventListener("click", function(){
+      const currentValue = getAddNumber('addNumberValue');
+      var totalValue = document.getElementById('addNumberValue').value = currentValue + 1;
+      const priceValue = getPriceNumber('casePrice');
+      var totalPhoneCasePrice = document.getElementById('casePrice').innerText = totalValue * 59;
+      return totalPhoneCasePrice;
+
+      addSubTotal();
+   })
+
+//minus button event handler
+//script for phone
+   const minusBtn = document.getElementById('minusPhone');
+   minusBtn.addEventListener("click", function(){
+      const currentValue = getAddNumber('addNumber');
+      var totalValue = document.getElementById('addNumber').value = currentValue - 1;
+      var priceValue = getPriceNumber('phonePrice');
+      document.getElementById('phonePrice').innerText = totalValue * 1219; 
+   })
+//script for phone case
+const minusButton = document.getElementById('minusCase');
+minusButton.addEventListener("click", function(){
+      const currentValue = getAddNumber('addNumberValue');
+      const totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
+      var priceValue = getPriceNumber('casePrice');
+      document.getElementById('casePrice').innerText = totalValue * 59; 
+   })
+
+
+
+//function goes here..........................
 function getAddNumber(id) {
       const addNumber = document.getElementById(id).value;
       const currentValue = parseFloat(addNumber);
@@ -93,61 +206,17 @@ function getAddNumber(id) {
       var priceValue = parseFloat(Price);
       return priceValue; 
    }
-//script for phone
-   const addPhone = document.getElementById('addPhone');
-   addPhone.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumber');
-      var totalValue = document.getElementById('addNumber').value = currentValue + 1;
-
-      const priceValue = getPriceNumber('phonePrice');
-      var totalPrice = document.getElementById('phonePrice').innerText = totalValue * 1219;  
-   })
-//script for phone case
-   const addCase = document.getElementById('addCase');
-   addCase.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumberValue');
-      var totalValue = document.getElementById('addNumberValue').value = currentValue + 1;
-
-      const priceValue = getPriceNumber('casePrice');
-      var totalPrice = document.getElementById('casePrice').innerText = totalValue * 59;
-   })
-
-//minus button event handler
-//script for phone
-   const minusBtn = document.getElementById('minusPhone');
-   minusBtn.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumber');
-      var totalValue = document.getElementById('addNumber').value = currentValue - 1;
-
-      var priceValue = getPriceNumber('phonePrice');
-      document.getElementById('phonePrice').innerText = totalValue * 1219; 
-   })
-//script for phone case
-const minusButton = document.getElementById('minusCase');
-minusButton.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumberValue');
-      const totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
-
-      var priceValue = getPriceNumber('casePrice');
-      document.getElementById('casePrice').innerText = totalValue * 59; 
-   })
-
-
-
-//function goes here..........................
-
 
 
 
 
    function addSubTotal(totalPrice) {
-      const subTotal = document.getElementById('subTotal').innerText;
-      const subTotalValue = parseFloat(subTotal);
-      const subTotalAll = subTotalValue + 1219;
+     
+      var subTotalAll = totalPrice;
       document.getElementById('subTotal').innerText = subTotalAll;
    }
   
-</script>
+</script> -->
 
 
 
