@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
    <section>
       <div class="container">
          <div class="cart">
@@ -25,11 +24,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minusPhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="addNumber" type="text" class="form-control text-center" value="1">
-                           <button id="addPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange('phone', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handleProductChange('phone', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$<span id="phonePrice">1219</span></h5>
+                        <h5>$<span id="phone-total">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,19 +42,16 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <!-- <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button> -->
 
-                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay..........
-                           <button onclick="handleProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>  -->
-
-                           <input  id="case-count" type="text" class="form-control text-center" value="1">
-                           <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
-
-                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay..........
-                           <button onclick="handleProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button> -->
-
+                           <button onclick="handleProductChange('case', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>  
+                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay.......... -->
                            
+                           <input  id="case-count" type="text" class="form-control text-center" value="1">
+                           <!-- <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button> -->
 
+                           <button onclick="handleProductChange('case', true)" class="btn btn-default"><i class="fas fa-plus"></i></button> 
+                           <!-- sorasori script theke click handler tule diye function ke  ekhane onclick a call koreo kora jay..........-->                          
                         </div>
                         <h5>$ <span id="case-total">59</span></h5>
                         <!-- <h5 id="case-total" >$59</span></h5> evabe deoya jay -->
@@ -90,29 +86,79 @@
    </section>
 
 <script>
-   document.getElementById("case-increase").addEventListener("click", function(){
-      handleProductChange(true);
-   });
-   document.getElementById("case-decrease").addEventListener("click", function(){
-      handleProductChange(false);
-   });
-   function handleProductChange(isIncrease){
-   const caseInput = document.getElementById("case-count");
-   const caseCount = parseInt(caseInput.value);
-   // const caseNewCount = caseCount - 1;
+//script for phone are showing here
 
-   let caseNewCount = caseCount;
+function handleProductChange(product, isIncrease){
+   const productInput = document.getElementById(product + "-count");
+   const productCount = parseInt(productInput.value);
+   // const productNewCount = productCount - 1;
+   let productNewCount = productCount;
    if(isIncrease == true){
-     caseNewCount = caseCount + 1;
+     productNewCount = productCount + 1;
    }
-   if(isIncrease == false && caseCount > 0){
-     caseNewCount = caseCount - 1;
+   if(isIncrease == false && productCount > 0){
+     productNewCount = productCount - 1;
    }
-   caseInput.value = caseNewCount;
-   const caseTotal = caseNewCount * 59;
-   document.getElementById("case-total").innerText = caseTotal;
+   productInput.value = productNewCount;
+   // const productTotal = productNewCount * 59;
+   let productTotal = 0;
+   if(product == 'phone'){
+      productTotal = productNewCount * 1219;
+   }
+   if(product == 'case'){
+      productTotal = productNewCount * 59;
+   }
+   document.getElementById(product + "-total").innerText = productTotal;
 }
 
+//script for phone 
+// document.getElementById("phone-increase").addEventListener("click", function(){
+//    handlePhoneChange(true);
+// })
+// document.getElementById("phone-decrease").addEventListener("click", function(){
+//    handlePhoneChange(false);
+// })
+
+// function handlePhoneChange(isIncrease){
+//    const phoneInput = document.getElementById("phone-count");
+//    const phoneCount = parseFloat(phoneInput.value);
+//    // const phoneNewCount = phoneCount - 1;
+//    if(isIncrease == true){
+//       phoneNewCount = phoneCount + 1;
+//    }
+//    if(isIncrease == false && phoneCount > 0){
+//       phoneNewCount = phoneCount - 1;
+//    }
+//    phoneInput.value = phoneNewCount;
+//    const phoneTotal = phoneNewCount * 1219;
+//    document.getElementById("phone-total").innerText = phoneTotal;
+// }
+
+
+//script for phone case
+   // document.getElementById("case-increase").addEventListener("click", function(){
+   //    handleProductChange(true);
+   // });
+   // document.getElementById("case-decrease").addEventListener("click", function(){
+   //    handleProductChange(false);
+   // });
+
+//    function handleProductChange(isIncrease){
+//    const caseInput = document.getElementById("case-count");
+//    const caseCount = parseInt(caseInput.value);
+//    // const caseNewCount = caseCount - 1;
+
+//    let caseNewCount = caseCount;
+//    if(isIncrease == true){
+//      caseNewCount = caseCount + 1;
+//    }
+//    if(isIncrease == false && caseCount > 0){
+//      caseNewCount = caseCount - 1;
+//    }
+//    caseInput.value = caseNewCount;
+//    const caseTotal = caseNewCount * 59;
+//    document.getElementById("case-total").innerText = caseTotal;
+// }
 
 
 //script for phone case
@@ -144,84 +190,6 @@
 // });
 
 </script>
-
-
-
-
-<!-- 
-<script>
-//plus button event handler
-
-//script for phone
-   const addPhone = document.getElementById('addPhone');
-   addPhone.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumber');
-      var totalValue = document.getElementById('addNumber').value = currentValue + 1;
-      const priceValue = getPriceNumber('phonePrice');
-      var totalPhonePrice = document.getElementById('phonePrice').innerText = totalValue * 1219; 
-      return totalPhonePrice;  
-
-      addSubTotal();
-   })
-//script for phone case
-   const addCase = document.getElementById('addCase');
-   addCase.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumberValue');
-      var totalValue = document.getElementById('addNumberValue').value = currentValue + 1;
-      const priceValue = getPriceNumber('casePrice');
-      var totalPhoneCasePrice = document.getElementById('casePrice').innerText = totalValue * 59;
-      return totalPhoneCasePrice;
-
-      addSubTotal();
-   })
-
-//minus button event handler
-//script for phone
-   const minusBtn = document.getElementById('minusPhone');
-   minusBtn.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumber');
-      var totalValue = document.getElementById('addNumber').value = currentValue - 1;
-      var priceValue = getPriceNumber('phonePrice');
-      document.getElementById('phonePrice').innerText = totalValue * 1219; 
-   })
-//script for phone case
-const minusButton = document.getElementById('minusCase');
-minusButton.addEventListener("click", function(){
-      const currentValue = getAddNumber('addNumberValue');
-      const totalValue = document.getElementById('addNumberValue').value = currentValue - 1;
-      var priceValue = getPriceNumber('casePrice');
-      document.getElementById('casePrice').innerText = totalValue * 59; 
-   })
-
-
-
-//function goes here..........................
-function getAddNumber(id) {
-      const addNumber = document.getElementById(id).value;
-      const currentValue = parseFloat(addNumber);
-      return currentValue;
-   }
-   function getPriceNumber(id) {
-      var Price = document.getElementById(id).innerText;
-      var priceValue = parseFloat(Price);
-      return priceValue; 
-   }
-
-
-
-
-   function addSubTotal(totalPrice) {
-     
-      var subTotalAll = totalPrice;
-      document.getElementById('subTotal').innerText = subTotalAll;
-   }
-  
-</script> -->
-
-
-
-
-
 </body>
 
 </html>
